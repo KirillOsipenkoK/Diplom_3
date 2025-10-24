@@ -1,0 +1,3 @@
+from .main_page_locators import MainPageLocators
+from .order_feed_locators import OrderFeedLocators
+from .login_page_locators import LoginPageLocators
