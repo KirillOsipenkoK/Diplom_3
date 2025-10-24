@@ -1,6 +1,5 @@
+
 import allure
-from selenium.webdriver.support import expected_conditions as EC
-from locators.main_page_locators import MainPageLocators
 from pages.main_page import MainPage
 from pages.order_feed_page import OrderFeedPage
 
@@ -14,7 +13,7 @@ class TestMainFunctionality:
         order_feed_page = OrderFeedPage(driver)
 
         main_page.click_order_feed_button()
-        main_page.wait.until(EC.url_contains("/feed"))
+        main_page.wait_for_url_contains("/feed")  # Используем новый метод
         main_page.click_constructor_button()
 
         assert main_page.is_buns_section_displayed()
@@ -25,7 +24,7 @@ class TestMainFunctionality:
         order_feed_page = OrderFeedPage(driver)
 
         main_page.click_order_feed_button()
-        main_page.wait.until(EC.url_contains("/feed"))
+        main_page.wait_for_url_contains("/feed")  # Используем новый метод
 
         assert order_feed_page.is_order_feed_displayed()
 
@@ -42,7 +41,7 @@ class TestMainFunctionality:
         main_page.click_ingredient()
         main_page.close_ingredient_modal()
 
-        assert main_page.wait_for_element_invisible(MainPageLocators.INGREDIENT_DETAILS_MODAL)
+        assert main_page.is_ingredient_modal_invisible()
 
     @allure.title("Увеличение счетчика ингредиента при добавлении в заказ")
     def test_ingredient_counter_increase(self, driver, login):
